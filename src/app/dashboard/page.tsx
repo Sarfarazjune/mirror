@@ -272,7 +272,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-[#040714] text-slate-100 flex flex-col justify-between selection:bg-violet-600">
       <AppNav isDemoMode={isDemoMode} onToggleDemo={handleToggleDemo} />
 
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 sm:px-6 py-8">
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
         {/* Error notification banner */}
         {errorMessage && (
           <div className="mb-6 rounded-2xl border border-rose-500/30 bg-rose-950/30 p-4 text-xs text-rose-300 flex items-center justify-between">
@@ -328,12 +328,12 @@ export default function DashboardPage() {
           /* Main Dashboard Content */
           <>
             {/* Top Greeting & Date */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
+                <h1 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
                   Good evening, {displayUserName}.
                 </h1>
-                <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                <p className="mt-1.5 text-xs leading-relaxed text-slate-400 sm:text-sm">
                   {currentDate} · Your weekly reflection is in progress.
                 </p>
               </div>
@@ -341,7 +341,7 @@ export default function DashboardPage() {
               <div className="flex items-center gap-3">
                 <Link
                   href="/check-in"
-                  className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-violet-600/30 hover:bg-violet-500 transition-all"
+                  className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 text-xs font-semibold text-white shadow-lg shadow-violet-600/25 transition-all hover:-translate-y-0.5 hover:bg-violet-500 hover:shadow-violet-500/30 sm:text-sm"
                 >
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -352,9 +352,9 @@ export default function DashboardPage() {
             </div>
 
             {/* Central Frosted Mirror & Radar Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-8">
+            <div className="mb-8 grid grid-cols-1 items-stretch gap-5 lg:grid-cols-12 lg:gap-6">
               {/* Main Visual Mirror: Clarity based on Score */}
-              <div className="lg:col-span-7 glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between relative overflow-hidden">
+              <div className="glass-panel relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/[0.09] p-5 shadow-[0_24px_80px_-48px_rgba(139,92,246,0.42)] transition-colors duration-300 hover:border-violet-300/20 sm:p-7 lg:col-span-7 lg:p-8">
                 {/* Ambient reflection illumination */}
                 <div
                   className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full bg-violet-600/20 blur-[80px]"
@@ -362,11 +362,11 @@ export default function DashboardPage() {
                 />
 
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-mono uppercase tracking-wider text-violet-400">
+                  <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-violet-300">
                       Intention vs. Reality Reflection
                     </span>
-                    <span className="text-xs text-slate-400">
+                    <span className="text-[11px] text-slate-500">
                       Voluntary Logged Time
                     </span>
                   </div>
@@ -376,40 +376,56 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Non-judgmental status caption */}
-                <div className="mt-6 pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
-                  <p className="text-slate-300 italic">
+                <div className="mt-6 flex flex-col gap-2 border-t border-white/[0.08] pt-4 text-xs sm:flex-row sm:items-center sm:justify-between">
+                  <p className="leading-relaxed text-slate-300 italic">
                     &ldquo;{mirrorResult.summaryMessage}&rdquo;
                   </p>
-                  <span className="text-[11px] font-mono text-slate-500">
+                  <span className="shrink-0 text-[10px] font-mono tracking-wide text-slate-500">
                     Formula: 100 × (1 − 0.5 × Δshares)
                   </span>
                 </div>
               </div>
 
               {/* Right Metrics Panel: Mirror Score & Active Experiment */}
-              <div className="lg:col-span-5 flex flex-col gap-6">
+              <div className="flex flex-col gap-5 lg:col-span-5 lg:gap-6">
                 {/* Mirror Score Card */}
-                <div className="glass-panel rounded-3xl p-6 border border-white/10">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-mono uppercase tracking-wider text-cyan-400">
+                <div className="glass-panel rounded-3xl border border-white/[0.09] p-5 shadow-[0_24px_80px_-52px_rgba(34,211,238,0.38)] transition-colors duration-300 hover:border-cyan-300/20 sm:p-6">
+                  <div className="mb-1 flex items-center justify-between gap-3">
+                    <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-cyan-300">
                       Mirror Score
                     </span>
-                    <span className="text-[11px] text-slate-400">Relative Alignment</span>
+                    <span className="text-[10px] text-slate-500 sm:text-[11px]">Relative Alignment</span>
                   </div>
 
-                  <div className="flex items-baseline gap-3 my-2">
-                    <span className="text-5xl font-extrabold tracking-tight text-white">
-                      {mirrorResult.score}%
-                    </span>
-                    <span className="text-xs font-semibold text-cyan-300">
-                      aligned
-                    </span>
+                  <div className="my-4 flex flex-col items-center gap-4 sm:flex-row sm:gap-5">
+                    <div
+                      aria-hidden="true"
+                      className="relative grid h-36 w-36 shrink-0 place-items-center rounded-full p-[7px] shadow-[0_0_34px_-12px_rgba(34,211,238,0.55)]"
+                      style={{
+                        background: `conic-gradient(from -90deg, #8b5cf6 0%, #22d3ee ${mirrorResult.score}%, rgba(255,255,255,0.09) ${mirrorResult.score}%, rgba(255,255,255,0.09) 100%)`,
+                      }}
+                    >
+                      <div className="grid h-full w-full place-content-center rounded-full border border-white/[0.07] bg-[#080d20] text-center shadow-inner">
+                        <span className="text-4xl font-extrabold leading-none tracking-tight text-white">
+                          {mirrorResult.score}%
+                        </span>
+                        <span className="mt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-300">
+                          aligned
+                        </span>
+                      </div>
+                    </div>
+                    <div className="text-center sm:text-left">
+                      <p className="text-sm font-semibold text-white">Your week, reflected</p>
+                      <p className="mt-1 max-w-xs text-xs leading-relaxed text-slate-400">
+                        A snapshot of how your logged time aligns with the priorities you chose.
+                      </p>
+                    </div>
                   </div>
 
                   {/* Clear next action rather than guilt */}
-                  <div className="mt-4 rounded-xl bg-violet-950/30 p-3.5 border border-violet-500/20 text-xs">
-                    <span className="font-semibold text-violet-300">Clear next action: </span>
-                    <span className="text-slate-200">
+                  <div className="mt-4 rounded-2xl border border-violet-400/15 bg-gradient-to-br from-violet-500/[0.09] to-transparent p-4 text-xs leading-relaxed">
+                    <span className="font-semibold text-violet-200">Clear next action: </span>
+                    <span className="text-slate-300">
                       {!isDemoMode && !hasCheckedInThisWeek
                         ? "Complete your first 45-second check-in to reflect today's time."
                         : `Try moving 20 minutes from scrolling to ${displayPriorities[0]?.name || "your focus"} today.`}
@@ -417,16 +433,16 @@ export default function DashboardPage() {
                   </div>
 
                   {/* Completion Progress Separately */}
-                  <div className="mt-4 pt-4 border-t border-white/10 flex justify-between text-xs text-slate-400">
+                  <div className="mt-4 flex justify-between gap-3 border-t border-white/[0.08] pt-4 text-[11px] text-slate-400">
                     <span>Total planned minutes completed:</span>
-                    <span className="font-bold text-white">
+                    <span className="shrink-0 font-bold tabular-nums text-white">
                       {mirrorResult.targetCompletionPercent}%
                     </span>
                   </div>
                 </div>
 
                 {/* Active 7-Day Experiment Card */}
-                <div className="glass-panel rounded-3xl p-6 border border-white/10 flex-1 flex flex-col justify-between">
+                <div className="glass-panel flex flex-1 flex-col justify-between rounded-3xl border border-white/[0.09] p-5 shadow-[0_24px_80px_-52px_rgba(20,184,166,0.3)] transition-colors duration-300 hover:border-teal-300/20 sm:p-6">
                   {displayExperiment ? (
                     <div>
                       <div className="flex items-center justify-between mb-2">
@@ -503,16 +519,19 @@ export default function DashboardPage() {
 
             {/* Priority Progress Cards */}
             <div className="mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-400">
+              <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
+                <div>
+                  <p className="mb-1 text-[10px] font-mono uppercase tracking-[0.2em] text-violet-300/80">Your rhythm</p>
+                  <h2 className="text-sm font-semibold tracking-wide text-slate-100 sm:text-base">
                   Chosen Life Priorities & Weekly Minutes
-                </h2>
-                <span className="text-xs text-slate-500">
+                  </h2>
+                </div>
+                <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[10px] text-slate-400 sm:text-xs">
                   {displayPriorities.length} active priorities
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {displayPriorities.map((priority) => {
                   const percent = Math.min(
                     100,
@@ -523,34 +542,41 @@ export default function DashboardPage() {
                   return (
                     <div
                       key={priority.id}
-                      className="glass-panel rounded-2xl p-5 border border-white/10 hover:border-white/20 transition-all"
+                      className="glass-panel group relative overflow-hidden rounded-2xl border border-white/[0.08] p-5 shadow-[0_18px_50px_-40px_rgba(0,0,0,0.8)] transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_24px_55px_-38px_rgba(139,92,246,0.35)]"
                     >
-                      <div className="flex items-center justify-between mb-3">
+                      <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-70 transition-opacity group-hover:opacity-100"
+                        style={{
+                          background: `linear-gradient(90deg, transparent, ${priority.colour}, transparent)`,
+                        }}
+                      />
+                      <div className="mb-4 flex items-center justify-between">
                         <span
-                          className="h-2.5 w-2.5 rounded-full"
-                          style={{ backgroundColor: priority.colour }}
+                          className="h-2.5 w-2.5 rounded-full shadow-[0_0_12px_currentColor]"
+                          style={{ backgroundColor: priority.colour, color: priority.colour }}
                         />
-                        <span className="text-xs font-bold text-slate-400">
+                        <span className="text-[11px] font-semibold tabular-nums text-slate-400">
                           {priority.actualMinutes} / {priority.targetMinutes}m
                         </span>
                       </div>
 
-                      <h3 className="font-bold text-sm text-white">{priority.name}</h3>
-                      <p className="text-[11px] text-slate-400 mt-1 line-clamp-2">
+                      <h3 className="text-sm font-bold tracking-wide text-white">{priority.name}</h3>
+                      <p className="mt-1.5 line-clamp-2 min-h-8 text-[11px] leading-relaxed text-slate-400">
                         &ldquo;{priority.why}&rdquo;
                       </p>
 
-                      <div className="mt-4 space-y-1">
-                        <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                      <div className="mt-5 space-y-2">
+                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-800/90">
                           <div
-                            className="h-full rounded-full transition-all duration-500"
+                            className="h-full rounded-full transition-all duration-500 group-hover:brightness-125"
                             style={{
                               backgroundColor: priority.colour,
                               width: `${percent}%`,
                             }}
                           />
                         </div>
-                        <div className="flex justify-between text-[10px] text-slate-500">
+                        <div className="flex justify-between gap-2 text-[10px] text-slate-500">
                           <span>{percent}% of target</span>
                           <span>
                             {priority.targetMinutes - priority.actualMinutes > 0
@@ -566,7 +592,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Unplanned / Scrolling Time Strip */}
-            <div className="glass-panel rounded-2xl p-5 border border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="glass-panel flex flex-col gap-4 rounded-2xl border border-white/[0.08] p-5 shadow-[0_18px_50px_-42px_rgba(245,158,11,0.4)] sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

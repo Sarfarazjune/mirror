@@ -63,7 +63,7 @@ export default function IntentionRadar({ items, score }: IntentionRadarProps) {
   const blurAmount = score >= 80 ? 0 : score >= 60 ? 2 : score >= 40 ? 5 : 8;
 
   return (
-    <div className="relative flex flex-col items-center justify-center p-4">
+    <div className="relative flex w-full flex-col items-center justify-center p-2 sm:p-4">
       {/* Dynamic Frosted Background Glow */}
       <div
         className="pointer-events-none absolute h-64 w-64 rounded-full bg-gradient-to-tr from-violet-600/20 via-cyan-500/15 to-transparent blur-[60px] transition-all duration-700"
@@ -73,7 +73,12 @@ export default function IntentionRadar({ items, score }: IntentionRadarProps) {
         }}
       />
 
-      <svg width={size} height={size} className="overflow-visible select-none">
+      <svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+        className="h-auto w-full max-w-[320px] select-none overflow-visible"
+      >
         <defs>
           <radialGradient id="radar-glow" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.25" />
@@ -93,7 +98,7 @@ export default function IntentionRadar({ items, score }: IntentionRadarProps) {
             cy={center}
             r={radius * level}
             fill="none"
-            stroke="rgba(255, 255, 255, 0.07)"
+            stroke="rgba(148, 163, 184, 0.14)"
             strokeDasharray={level === 1 ? "none" : "3 3"}
             strokeWidth="1"
           />
@@ -109,7 +114,7 @@ export default function IntentionRadar({ items, score }: IntentionRadarProps) {
               y1={center}
               x2={x}
               y2={y}
-              stroke="rgba(255, 255, 255, 0.08)"
+              stroke="rgba(148, 163, 184, 0.16)"
               strokeWidth="1"
             />
           );
@@ -120,7 +125,10 @@ export default function IntentionRadar({ items, score }: IntentionRadarProps) {
           points={actualPoints}
           fill="url(#actual-grad)"
           stroke="#06b6d4"
-          strokeWidth="2"
+          strokeWidth="2.5"
+          style={{
+            filter: "drop-shadow(0 0 10px rgba(34, 211, 238, 0.16))",
+          }}
           className="transition-all duration-700 ease-out"
         />
 
@@ -159,7 +167,12 @@ export default function IntentionRadar({ items, score }: IntentionRadarProps) {
               y={y}
               textAnchor="middle"
               dominantBaseline="middle"
-              className="fill-slate-300 text-[11px] font-medium"
+              className="text-[10px] font-semibold tracking-wide sm:text-[11px]"
+              fill={item.colour}
+              stroke="#040714"
+              strokeWidth="4"
+              strokeLinejoin="round"
+              paintOrder="stroke"
             >
               {item.name}
             </text>
@@ -168,13 +181,13 @@ export default function IntentionRadar({ items, score }: IntentionRadarProps) {
       </svg>
 
       {/* Legend below radar */}
-      <div className="mt-4 flex items-center justify-center gap-6 text-xs text-slate-400">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-4 rounded-full border border-violet-400 bg-transparent" />
+      <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-[10px] text-slate-300 sm:mt-4 sm:gap-3 sm:text-xs">
+        <div className="flex items-center gap-2 rounded-full border border-white/[0.07] bg-white/[0.03] px-3 py-1.5">
+          <span className="h-0.5 w-4 rounded-full bg-violet-300 shadow-[0_0_8px_rgba(196,181,253,0.65)]" />
           <span>Intended Balance</span>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-4 rounded-full bg-cyan-500/70" />
+        <div className="flex items-center gap-2 rounded-full border border-white/[0.07] bg-white/[0.03] px-3 py-1.5">
+          <span className="h-0.5 w-4 rounded-full bg-cyan-300 shadow-[0_0_8px_rgba(103,232,249,0.55)]" />
           <span>Actual Logged</span>
         </div>
       </div>
